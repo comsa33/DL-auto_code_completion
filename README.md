@@ -8,6 +8,7 @@
 
 ## model structure
 ![img]https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fd9fbfd43-734f-4e9e-8545-77032752f9a0%2Fmodel-structure.png&blockId=3897588e-af4d-4453-a86f-08a85edd6afa
+![model-structure](https://user-images.githubusercontent.com/61719257/148905156-6476fdcb-447b-4f34-8c11-c2f1159b3009.png)
 
 ## how to use (terminal)
 - first, download the repository on your local environment.
