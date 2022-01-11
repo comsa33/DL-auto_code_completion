@@ -13,6 +13,8 @@
 ![model-structure](https://user-images.githubusercontent.com/61719257/148905156-6476fdcb-447b-4f34-8c11-c2f1159b3009.png)
 
 ## how to use (terminal)
+![auto-code1](https://user-images.githubusercontent.com/61719257/148905376-389b7a14-cded-438c-b628-fc3d4e48e745.gif)
+![auto-code2](https://user-images.githubusercontent.com/61719257/148905396-5168c558-06cd-4e7e-8b33-46b6bd159086.gif)
 - first, download the repository on your local environment.
 - install the neccessary libraries on your dependent environment.
 > `pip install -r requirements.txt`
