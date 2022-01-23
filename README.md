@@ -1,7 +1,7 @@
 # auto_code_complete v1.3
 
 ## purpose and usage
-> `auto_code_complete` is a auto word-completetion program which allows you to customize it on your needs.
+> `auto_code_complete` is a deep-learning based auto word-completetion program which allows you to customize it on your needs.
 > the model for this program is a combined model of a deep-learning NLP(Natural Language Process) model structure called 'GRU(gated recurrent unit)' and 'LSTM(Long Short Term Memory)'.
 
 > the model for this program is one of the deep-learning NLP(Natural Language Process) model structure called 'GRU(gated recurrent unit)'.
