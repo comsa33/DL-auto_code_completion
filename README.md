@@ -1,16 +1,57 @@
 # auto_code_complete v1.3
 
-## purpose and usage
+## Purpose and Usage
 > `auto_code_complete` is a deep-learning based auto word-completetion program which allows you to customize it on your needs.
 > the model for this program is a combined model of a deep-learning NLP(Natural Language Process) model structure called 'GRU(gated recurrent unit)' and 'LSTM(Long Short Term Memory)'.
 
 > the model for this program is one of the deep-learning NLP(Natural Language Process) model structure called 'GRU(gated recurrent unit)'.
 
-## data preprocessing
+## Data Preprocessing
 ![data-preprocess](https://user-images.githubusercontent.com/61719257/148905258-e8a4195e-cb00-4493-94cb-b7982e6885d5.png)
 
-## model structure
+## Model Structure
 ![model-structure](https://user-images.githubusercontent.com/61719257/148905156-6476fdcb-447b-4f34-8c11-c2f1159b3009.png)
+
+## Evaluations
+> 입력된 데이터에 따라 모델 output layer 에서의 target class 가 천차만별이다.
+> 
+> 
+> 아주 적은 몇줄의 코드를 훈련시킬 경우에는 100~500 개 사이의 클래스를 분류해야하고, 200줄 가량의 (파일 하나정도 분량) 코드는 4000~6000 개 사이의 클래스를 분류해야한다. 혹은 tensorflow 와 같은 라이브러리를 통째로 주요 명령어들만 뽑아 훈련시킬 경우라고 하더라도 최소 12만개 이상의 클래스를 분류해야하기 때문에 단순한 accuracy 만을 주요 평가지표로 고려하기에는 모델의 성능을 완벽하게 설명하기 어렵다고 판단했다.
+> 
+> 또한, 훈련셋과 검증, 테스트 셋으로 나누어 모델성능을 확인하는 일반적인 경우와 다르게 새로운 코드를 생성하는 것이 주요 목적이 아닌 이미 기존에 학습된 코드들을 얼마나 정확하고 다양하게 추천해줄 수 있는 기능을 기대하고 있기 때문에 과적합에 대한 부분은 우려대상에서 제외되었다.
+> 
+> 추가로 바로 앞서 언급한 모델의 주요목적 때문에 검증셋과 테스트셋이 결국 훈련셋과 동일하게 사용되었다.
+> 
+
+### a. outputs from the output layer
+
+최종 출력층을 거쳐 softmax 함수까지 처리를 마친 outputs들 중 일정 threshold = 0.025 이상의 결과들만 추천하도록 했다.
+
+그렇게 함으로써 최종적인 결과는 가장 높은 softmax 값의 결과 + softmax 결과 > 0.025 이상의 결과로 분류해서 추천하게 된다. 즉 입력값에 대한 the best match 와 recommendations 로 결과를 보여주는 것이다.
+
+### b. Accuracy For Recommendations
+
+앞서 언급한 것처럼 기존의 `accuracy` 만으로는 정확히 프로그램의 성능을 설명하기 어렵기 때문에 `AFR(Accuracy for Recommendations : 추천 정확도)` 를 사용하여 모델을 평가했다.
+
+이 새로운 평가지표는 훈련을 마친 모델에 테스트 데이터를 입력했을때 나온 결과로 최종 평가를 하도록 하였다.
+
+> 추천된 목록 중 실제 훈련된 코드(진짜 존재하는 코드)와 똑같은 단어나 문구가 얼마나 있는지를 측정하는 방법
+> 
+- AFR 공식은 아래와 같이 계산한다.
+    
+    > <img width="81" alt="Screen Shot 2022-04-04 at 10 43 59" src="https://user-images.githubusercontent.com/61719257/161460584-a24fbaa8-f918-489f-98b7-0e4c8ce4d734.png">
+    
+    
+    > N_true : 추천 목록에 있는 코등 중에서 실제 존재하는 코드의 수 
+    > 
+    > N_pred : 입력 당 예측된 추천 목록에 있는 총 코드의 개수
+    > 
+    > N : 총 테스트 데이터의 수
+
+|DATA		|Accuracy for Best	|Accuracy for Recommendations	|
+|---------------|-----------------------|-------------------------------|
+|Custom Small Data|0.875|1.0|
+|Big Data(TF open source)|0.58|0.79|
 
 ## how to use (terminal)
 ![auto-code1](https://user-images.githubusercontent.com/61719257/148905376-389b7a14-cded-438c-b628-fc3d4e48e745.gif)
